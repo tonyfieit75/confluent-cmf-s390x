@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 2.0.3
+description: A Helm chart to deploy Confluent Manager for Apache Flink®
+home: https://www.confluent.io/
+keywords:
+- Confluent
+- CMF
+- Confluent Manager for Apache Flink®
+- Confluent Platform
+maintainers:
+- name: Confluent Platform for Apache Flink® team
+  url: https://support.confluent.io/
+name: confluent-manager-for-apache-flink
+version: 2.0.3

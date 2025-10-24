@@ -1,0 +1,18 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: confluent-manager
+  namespace: confluent-platform
+  labels:
+    app.kubernetes.io/name: confluent-manager-for-apache-flink
+spec:
+  to:
+    kind: Service
+    name: cmf-service
+    weight: 100
+  port:
+    targetPort: cmf-service-https   # must match the service port name
+  tls:
+    termination: edge
+  wildcardPolicy: None
+

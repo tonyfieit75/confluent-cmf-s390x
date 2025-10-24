@@ -1,0 +1,71 @@
+# --- Image configuration ---
+image:
+  repository: quay.io/tonyfieit75
+  name: cp-cmf
+  tag: 2.0-SNAPSHOT-s390x
+  pullPolicy: IfNotPresent
+
+# --- Security context for OpenShift ---
+podSecurity:
+  enabled: true
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: null
+    fsGroup: null
+    supplementalGroups: null
+
+podSecurityContext:
+  runAsUser: null
+  fsGroup: null
+  supplementalGroups: null
+
+containerSecurityContext:
+  runAsNonRoot: true
+  runAsUser: null
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["ALL"]
+
+# --- Persistence for SQLite embedded DB ---
+persistence:
+  create: false                # we'll bind to the PVC below
+  existingClaim: cmf-sqlite-pvc
+  mountPath: /app/local        # matches where CMF writes cmf.db
+  storageClassName: managed-nfs-storage
+  dataVolumeCapacity: 5Gi
+
+# --- Environment for SQLite ---
+extraEnv:
+  - name: SPRING_DATASOURCE_URL
+    value: "jdbc:sqlite:/app/local/cmf.db"
+
+# --- RBAC and ServiceAccount ---
+rbac: true
+serviceAccount:
+  create: true
+  name: ""
+
+# --- Resources ---
+resources:
+  limits:
+    cpu: "2"
+    memory: 1024Mi
+  requests:
+    cpu: "1"
+    memory: 512Mi
+
+# --- CMF Configuration ---
+cmf:
+  stackTraceLogging: false
+  k8s:
+    metadataSync: true
+  sql:
+    production: false
+
+# --- License (optional) ---
+license:
+  secretRef: ""
+
+# --- JVM Options ---
+jvmArgs: ""
+

@@ -1,7 +1,6 @@
 # Confluent Manager for Apache Flink® on OpenShift (s390x)
 
 This repo contains a Helm chart and helper scripts to deploy **Confluent Manager for Apache Flink (CMF)** on **Red Hat OpenShift** (IBM Z **s390x**).
-It packages a re-platformed CMF image for s390x plus OpenShift-friendly security settings (SCC-safe), persistence for CMF’s embedded SQLite, and an OpenShift Route for access.
 
 > **What CMF does (high level)**
 > CMF is a control plane for Apache Flink in Kubernetes/OpenShift. It provides:
